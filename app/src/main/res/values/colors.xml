@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="statusbar">#33000000</color>
+
+    <!--My Colors-->
+    <color name="bonial_white">#F4F4F4</color>
+    <color name="bonial_black">#000000</color>
+    <color name="bonial_dark_gray">#80333333</color>
+    <color name="bonial_bright_red">#ED3135</color>
+
+</resources>

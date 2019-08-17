@@ -1,0 +1,199 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.31.0'
+    }
+}
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'io.fabric'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+    defaultConfig {
+        applicationId "com.samilaltin.bonialnews"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.DatabaseGetArticles.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'Boolean', 'LOG_ENABLED', 'false'
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'Boolean', 'LOG_ENABLED', 'true'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+
+    flavorDimensions "default"
+
+    productFlavors {
+        liveFlavor {
+            applicationId "com.samilaltin.bonialnews"
+            android.defaultConfig.applicationId "com.samilaltin.bonialnews"
+            ext.betaDistributionReleaseNotes = "BetaReleaseNote"
+            ext.betaDistributionGroupAliases = "qa,managers,android-developers"
+            ext.betaDistributionNotifications = true
+            buildConfigField 'String', 'X_APP_KEY', '"1c2d7756aa3841ae8db241297f1b4092"'
+            buildConfigField 'String', 'MAPS_KEY', '"AIzaSyCNHTPJ6E1FEz_aZw4aBKPLAC1-8QkEheo"'
+            buildConfigField 'String', 'INSTABUG_KEY', '"DatabaseGetArticles"'
+            buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
+        }
+        devFlavor {
+            applicationId "com.samilaltin.bonialnews.bnldev"
+            android.defaultConfig.applicationId "com.samilaltin.bonialnews.bnldev"
+            buildConfigField 'String', 'MAPS_KEY', '"AIzaSyCNHTPJ6E1FEz_aZw4aBKPLAC1-8QkEheo"'
+            ext.betaDistributionReleaseNotes = "liveReleaseNote"
+            ext.betaDistributionGroupAliases = "qa,managers,android-developers"
+            ext.betaDistributionNotifications = true
+            buildConfigField 'String', 'X_APP_KEY', '"1c2d7756aa3841ae8db241297f1b4092"'
+            buildConfigField 'String', 'INSTABUG_KEY', '"DatabaseGetArticles"'
+            buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
+        }
+    }
+    signingConfigs {
+        debug {
+            storeFile file("../resources/tools/debug.keystore")
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+            storePassword "android"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+        /*DatabaseGetArticles*/
+        testImplementation deps.junit
+        androidTestImplementation deps.androidx.test_runner
+        androidTestImplementation deps.androidx.espresso_core
+        /*DatabaseGetArticles*/
+
+        /*androidx*/
+        implementation deps.androidx.appcompat
+        implementation deps.androidx.core_ktx
+        implementation deps.androidx.lifecycle
+        implementation deps.androidx.constraintlayout
+        /*androidx*/
+
+        /*google*/
+        implementation deps.material
+        implementation deps.gson
+        implementation deps.easy_permission
+        implementation deps.google_play_services.location
+        implementation deps.google_play_services.maps
+        implementation deps.google_play_services.gcm
+        /*google*/
+
+        /*firabse*/
+        implementation deps.firebase.firebase
+        implementation deps.firebase.firebase_core
+        implementation deps.firebase.firebase_messaging
+        implementation deps.firebase.firebase_dynamiclink
+        /*firabse*/
+
+        /*fabric*/
+        implementation(deps.crashlytics) {
+            transitive = true
+        }
+        /*fabric*/
+
+        /*retrofit*/
+        implementation deps.retrofit.runtime
+        implementation deps.retrofit.gson
+        /*retrofit*/
+
+        /*butterknife*/
+        implementation deps.butterknife.runtime
+        annotationProcessor deps.butterknife.compiler
+        kapt deps.butterknife.compiler
+        /*butterknife*/
+
+        /*picasso*/
+        implementation deps.picasso
+        /*picasso*/
+
+        /*others*/
+        implementation deps.sdp
+        implementation deps.logger
+        debugImplementation deps.leak_canary_debug
+        releaseImplementation deps.leak_canary_live
+        debugImplementation deps.chuck.library
+        releaseImplementation deps.chuck.library_no_op
+        implementation deps.otto
+
+
+        implementation deps.glideVersion
+
+        implementation deps.rx2FastAndroidNetworking
+
+
+        implementation deps.dagger
+        kapt deps.daggercompiler
+        kapt deps.daggerprocessor
+        implementation deps.daggersupport
+
+
+        implementation deps.rxjava2rxjava
+        implementation deps.rxjava2rxandroid
+        implementation deps.adapterRxjava2
+
+
+        implementation deps.roomDatabaserxjava2
+        kapt deps.roomDatabasecompiler
+        kapt deps.roomDB
+
+        implementation deps.lottieVersion
+
+        /*others*/
+    }
+    apply plugin: 'com.google.gms.google-services'
+
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+}
+dependencies {
+    implementation "com.github.brianPlummer:tinydancer:0.1.2"
+    testImplementation "com.github.brianPlummer:tinydancer-noop:0.1.2"
+    implementation 'androidx.appcompat:appcompat:+'
+    implementation 'androidx.constraintlayout:constraintlayout:+'
+}

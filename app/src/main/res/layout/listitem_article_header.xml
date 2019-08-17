@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="article"
+            type="com.samilaltin.bonialnews.data.model.response.Articles" />
+
+
+        <variable
+            name="articleHandlers"
+            type="com.samilaltin.bonialnews.ui.main.handler.ArticleHandlers" />
+
+        <import type="com.samilaltin.bonialnews.utility.CommonUtil"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rootHeaderCV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="@{(v) -> articleHandlers.onArticleClick(article.url)}"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/urlToImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:url="@{article.urlToImage}"
+                app:placeHolder="@{@drawable/placeholder}"
+                android:scaleType="centerCrop" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toStartOf="@id/publishedAt"
+                    android:text="@{article.title}"
+                    android:textColor="@color/bonial_black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/publishedAt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="4dp"
+                    android:text="@{@string/hrs_ago(CommonUtil.publishedAt(article.publishedAt))}"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/bonial_dark_gray" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@{article.content}" />
+
+            <TextView
+                android:id="@+id/sourceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@{@string/from(article.source.name)}"
+                android:textColor="@color/bonial_dark_gray"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

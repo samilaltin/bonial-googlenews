@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "921037710148",
+    "firebase_url": "https://bonialnews.firebaseio.com",
+    "project_id": "bonialnews",
+    "storage_bucket": "bonialnews.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921037710148:android:d5b773582cb920f9",
+        "android_client_info": {
+          "package_name": "com.samilaltin.bonialnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921037710148-j96q773l9ejtk6t6oarj9q0q2ehffs2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9_O_lu58enqMj20lYN-yDd3GAClD_q8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921037710148-j96q773l9ejtk6t6oarj9q0q2ehffs2t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921037710148:android:d74366f022e3f019",
+        "android_client_info": {
+          "package_name": "com.samilaltin.bonialnews.bnldev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921037710148-j96q773l9ejtk6t6oarj9q0q2ehffs2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9_O_lu58enqMj20lYN-yDd3GAClD_q8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921037710148-j96q773l9ejtk6t6oarj9q0q2ehffs2t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
